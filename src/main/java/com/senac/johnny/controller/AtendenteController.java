@@ -1,6 +1,8 @@
 package com.senac.johnny.controller;
 
 import com.senac.johnny.dto.CreateUserDto;
+import com.senac.johnny.dto.LoginUserDto;
+import com.senac.johnny.dto.RecoveryJwtTokenDto;
 import com.senac.johnny.entity.Atendente;
 import com.senac.johnny.service.AtendenteService;
 import org.springframework.http.HttpStatus;
@@ -32,5 +34,10 @@ public class AtendenteController {
     public ResponseEntity<Void> criarAtendente (@RequestBody CreateUserDto createUserDto){
         atendenteService.criarAtentende(createUserDto);
         return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<RecoveryJwtTokenDto> loginAtendente(@RequestBody LoginUserDto loginUserDto){
+        return new ResponseEntity<>(atendenteService.login(loginUserDto),HttpStatus.OK);
     }
 }
